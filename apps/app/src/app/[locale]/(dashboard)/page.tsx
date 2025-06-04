@@ -165,7 +165,7 @@ export default function Page() {
   ];
   
   return (
-    <div className="space-y-8 max-w-screen-xl mx-auto">
+    <div className="space-y-8 w-full px-4 sm:px-6">
       {/* Welcome Section with profile dropdown */}
       <Section>
         <div className="flex items-center justify-between mb-2">
