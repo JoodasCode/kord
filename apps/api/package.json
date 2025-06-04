@@ -1,5 +1,5 @@
 {
-  "name": "@v1/api",
+  "name": "@kord/api",
   "private": true,
   "scripts": {
     "dev": "supabase start",

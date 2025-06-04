@@ -1,90 +1,126 @@
-![hero](image.png)
+# KORD: AI MARKETING COORDINATOR
 
+Kord (short for "Coordinator") is an AI-powered SaaS tool that automates and enhances the role of a marketing coordinator. Designed for marketing teams, especially in regulated or event-heavy industries like financial services, Kord executes and interprets campaign tasks with full contextual awareness of brand, legal, and strategic guidelines.
 
-<p align="center">
-	<h1 align="center"><b>Create v1</b></h1>
-<p align="center">
-    An open-source starter kit based on <a href="https://midday.ai">Midday</a>.
-    <br />
-    <br />
-    <a href="https://v1.run"><strong>Website</strong></a> · 
-    <a href="https://github.com/midday-ai/v1/issues"><strong>Issues</strong></a> · 
-    <a href="#whats-included"><strong>What's included</strong></a> ·
-    <a href="#prerequisites"><strong>Prerequisites</strong></a> ·
-    <a href="#getting-started"><strong>Getting Started</strong></a> ·
-    <a href="#how-to-use"><strong>How to use</strong></a>
-  </p>
-</p>
+## 🌟 Core Value Proposition
 
-Everything you need to build a production ready SaaS, it's a opinionated stack based on learnings from building Midday using the latest Next.js framework, it's a monorepo with a focus on code reuse and best practices that will grow with your business.
+> Replace your marketing coordinator with a smart AI assistant that *thinks like you*, acts proactively, and integrates seamlessly into your workflow.
 
-## What's included
+Kord:
 
-[Next.js](https://nextjs.org/) - Framework<br>
-[Turborepo](https://turbo.build) - Build system<br>
-[Biome](https://biomejs.dev) - Linter, formatter<br>
-[TailwindCSS](https://tailwindcss.com/) - Styling<br>
-[Shadcn](https://ui.shadcn.com/) - UI components<br>
-[TypeScript](https://www.typescriptlang.org/) - Type safety<br>
-[Supabase](https://supabase.com/) - Authentication, database, storage<br>
-[Upstash](https://upstash.com/) - Cache and rate limiting<br>
-[React Email](https://react.email/) - Email templates<br>
-[Resend](https://resend.com/) - Email delivery<br>
-[i18n](https://next-international.vercel.app/) - Internationalization<br>
-[Sentry](https://sentry.io/) - Error handling/monitoring<br>
-[Dub](https://dub.sh/) - Sharable links<br>
-[Trigger.dev](https://trigger.dev/) - Background jobs<br>
-[OpenPanel](https://openpanel.dev/) - Analytics<br>
-[Polar](https://polar.sh) - Billing (coming soon)<br>
-[react-safe-action](https://next-safe-action.dev) - Validated Server Actions<br>
-[nuqs](https://nuqs.47ng.com/) - Type-safe search params state manager<br>
-[next-themes](https://next-themes-example.vercel.app/) - Theme manager<br>
+* Automates brief interpretation, email writing, task generation, and performance reporting
+* Understands internal documents like brand guidelines, legal compliance docs, and tone guides
+* Reads and responds to task assignments from managers
+* Integrates with Asana, Google Docs, Gmail, and Adestra
 
-## Directory Structure
+## 🧰 System Architecture
 
-```
-.
-├── apps                         # App workspace
-│    ├── api                     # Supabase (API, Auth, Storage, Realtime, Edge Functions)
-│    ├── app                     # App - your product
-│    ├── web                     # Marketing site
-│    └── ...
-├── packages                     # Shared packages between apps
-│    ├── analytics               # OpenPanel analytics
-│    ├── email                   # React email library
-│    ├── jobs                    # Trigger.dev background jobs
-│    ├── kv                      # Upstash rate-limited key-value storage
-│    ├── logger                  # Logger library
-│    ├── supabase                # Supabase - Queries, Mutations, Clients
-│    └── ui                      # Shared UI components (Shadcn)
-├── tooling                      # are the shared configuration that are used by the apps and packages
-│    └── typescript              # Shared TypeScript configuration
-├── .cursorrules                 # Cursor rules specific to this project
-├── biome.json                   # Biome configuration
-├── turbo.json                   # Turbo configuration
-├── LICENSE
-└── README.md
-```
+Built on the [Midday AI v1](https://github.com/midday-ai/v1) framework for stability, scalability, and modularity.
 
-## Prerequisites
+### Frontend
 
-Bun<br>
-Docker<br>
-Upstash<br>
-Dub<br>
-Trigger.dev<br>
-Resend<br>
-Supabase<br>
-Sentry<br>
-OpenPanel<br>
+* **Framework**: Next.js (App Router)
+* **Styling**: Tailwind CSS
+* **UI Components**: Shadcn UI + Radix
+* **Themes**: next-themes
+
+### Backend
+
+* **API & Functions**: Node.js (Edge Functions via Supabase)
+* **Database**: Supabase (Postgres + Supabase Vector)
+* **Caching & Jobs**: Upstash Redis + Trigger.dev
+* **Email System**: React Email + Resend
+* **Auth**: Supabase Auth
+* **Analytics**: OpenPanel
+* **Error Monitoring**: Sentry
+
+## 📊 Features & Modules
+
+### ✍️ Brief Interpreter
+
+* Converts plain-English campaign instructions into tasks and content
+* Pulls relevant context from knowledge base
+* Routes instructions to correct modules (e.g., email gen, Asana task, LinkedIn post)
+
+### 📅 Task Manager
+
+* **Reads from Asana**: Checks for tasks assigned to "Kord" or tagged with @Kord
+* **Writes to Asana**: Generates subtasks, due dates, dependencies
+* Adds comments, attaches drafts, and updates statuses based on work progress
+
+### 📈 Reporting Engine
+
+* Ingests campaign data (via Adestra API or CSV import)
+* Summarizes performance: open rate, CTR, conversions
+* Suggests improvements and generates Google Docs + Slide reports
+
+### 📚 Knowledge Base Ingestion
+
+* Uploads PDFs, markdown, CSVs
+* Tagged and embedded using Supabase Vector
+* Accessible to LLM for context-aware generation and validation
+
+### 🎨 Content Generator
+
+* Generates Adestra-compatible emails, LinkedIn posts, website blurbs, speaker/sponsor intros
+* Formats output with correct tone, legal disclaimers, CTAs, etc.
+
+### 🌐 Dashboard UI
+
+* Brief submission form
+* Task + campaign status view
+* Auto-generated outputs with editing UI
+* File upload system for context
+* Notifications + report summaries
+
+## 🛋️ User Flow (Example)
+
+1. Manager creates Asana task: "Promote EPTA Forum to member firms"
+2. Kord reads the task
+3. Pulls context: EPTA audience, FIA brand, 2023 campaign examples
+4. Auto-generates:
+   * Email draft
+   * Asana subtasks (design asset, approval, send)
+   * LinkedIn post draft
+   * Report template
+5. Links all in task comment + updates Asana status
+6. Manager reviews & approves or gives feedback
+
+## 🛋️ Plugins / Integrations
+
+* **Asana Plugin (Bidirectional)**
+* **Google Docs API** (for doc creation + editing)
+* **Google Slides API** (for report slides)
+* **Gmail API** (for approvals, feedback summaries)
+* **React Email + Resend** (for campaign email previews)
+* **Adestra** (Manual or API-based data ingest)
+
+## 🚀 MVP Deliverables
+
+* [ ] Next.js frontend with tailwind/shadcn layout
+* [ ] Asana integration (read & write)
+* [ ] Google Docs writer
+* [ ] Prompt + document context pipeline (LangChain or raw embeddings)
+* [ ] Email generator with output in Adestra-friendly HTML
+* [ ] Dashboard interface + file upload
+* [ ] 3 working workflows: Email Draft, Asana Setup, Campaign Report
+
+## 🚫 Constraints & Rules
+
+* Kord **must obey legal + brand guidelines** from uploaded docs
+* Kord **must acknowledge task hierarchy** (managers assign, Kord executes)
+* Kord **must log actions** visibly for audit trail
+* All outputs should be **editable by humans** before deployment
+
+## 🚀 Tagline Ideas
+
+> "Your coordinator didn't quit. She scaled."
+>
+> "Kord doesn't take breaks. It takes briefs."
+>
+> "Built to replace you. Designed by you."
 
 ## Getting Started
-
-Clone this repo locally with the following command:
-
-```bash
-bunx degit midday-ai/v1 v1
-```
 
 1. Install dependencies using bun:
 
@@ -92,7 +128,7 @@ bunx degit midday-ai/v1 v1
 bun i
 ```
 
-2. Copy `.env.example` to `.env` and update the variables.
+2. Copy `.env.example` to `.env` and update the variables:
 
 ```sh
 # Copy .env.example to .env for each app
@@ -101,37 +137,29 @@ cp apps/app/.env.example apps/app/.env
 cp apps/web/.env.example apps/web/.env
 ```
 
-4. Start the development server from either bun or turbo:
+3. Start the development server:
 
-```ts
-bun dev // starts everything in development mode (web, app, api, email)
-bun dev:web // starts the web app in development mode
-bun dev:app // starts the app in development mode
-bun dev:api // starts the api in development mode
-bun dev:email // starts the email app in development mode
+```sh
+bun dev # starts everything in development mode (web, app, api, email)
+bun dev:web # starts the web app in development mode
+bun dev:app # starts the app in development mode
+bun dev:api # starts the api in development mode
+bun dev:email # starts the email app in development mode
 
-// Database
-bun migrate // run migrations
-bun seed // run seed
+# Database
+bun migrate # run migrations
+bun seed # run seed
 ```
 
-## How to use
-This boilerplate is inspired by our work on Midday, and it's designed to serve as a reference for real-world apps. Feel free to dive into the code and see how we've tackled various features. Whether you're looking to understand authentication flows, database interactions, or UI components, you'll find practical, battle-tested implementations throughout the codebase. It's not just a starting point; it's a learning resource that can help you build your own applications.
+## Color Palette
 
-With this, you have a great starting point for your own project.
-
-## Deploy to Vercel
-
-Vercel deployment will guide you through creating a Supabase account and project.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmidday-ai%2Fv1&env=RESEND_API_KEY,UPSTASH_REDIS_REST_URL,UPSTASH_REDIS_REST_TOKEN,SENTRY_AUTH_TOKEN,NEXT_PUBLIC_SENTRY_DSN,SENTRY_ORG,SENTRY_PROJECT,DUB_API_KEY,NEXT_PUBLIC_OPENPANEL_CLIENT_ID,OPENPANEL_SECRET_KEY&project-name=create-v1&repository-name=create-v1&redirect-url=https%3A%2F%2Fv1.run&demo-title=Create%20v1&demo-description=An%20open-source%20starter%20kit%20based%20on%20Midday.&demo-url=https%3A%2F%2Fv1.run&demo-image=https%3A%2F%2Fv1.run%2Fopengraph-image.png&integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6)
-
-## Recognition
-
-<a href="https://news.ycombinator.com/item?id=41408929">
-  <img
-    style="width: 250px; height: 54px;" width="250" height="54"
-    alt="Featured on Hacker News"
-    src="https://hackernews-badge.vercel.app/api?id=41408929"
-  />
-</a>
+| Use                      | Color            | Hex       | Notes                               |
+| ------------------------ | ---------------- | --------- | ----------------------------------- |
+| **Primary**              | Charcoal Gray    | `#1A1A1A` | Neutral, modern, stable background  |
+| **Accent**               | Electric Indigo  | `#5C33FF` | Smart, AI-infused touch of color    |
+| **Secondary**            | Soft Lavender    | `#D8D5FF` | For light-mode accents and cards    |
+| **CTA / Success**        | Emerald Green    | `#3DBA7E` | Task completed, success indicators  |
+| **Warning / Highlights** | Amber            | `#FBBF24` | Attention states without aggression |
+| **Error / Rejection**    | Soft Red         | `#EF4444` | Inline validation and feedback      |
+| **Text (dark mode)**     | White / Gray-100 | `#F3F4F6` | Readable on charcoal backgrounds    |
+| **Text (light mode)**    | Slate            | `#1E293B` | Clean and modern on light UI        |
